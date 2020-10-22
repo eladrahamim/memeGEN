@@ -1,0 +1,21 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+}
+
+canvas {
+    display: block;
+    margin: 20px auto;
+    border: 1px solid black;
+}
+
+.meme-editor {
+    text-align: center;
+}
+
+svg {
+    width: 12px;
+}
