@@ -10,33 +10,57 @@
 
 <body onload="onInit()">
 
-    <h1>Meme Generator</h1>
+    <header class="main-header">
 
-    <form class="meme-editor">
-        <input type="text" placeholder="Text line" id="0" oninput="onTextChange(this)">
-        <button class="btn add" onclick="onAddTextLine(event)"><img src="img/symbols/add.png" alt=""></button>
-        <button class="btn up" onclick="onMoveLineUp(event)"><svg xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 512.171 512.171">
-                <path
-                    d="M476.723 216.64L263.305 3.115A10.652 10.652 0 00255.753 0a10.675 10.675 0 00-7.552 3.136L35.422 216.64c-3.051 3.051-3.947 7.637-2.304 11.627a10.67 10.67 0 009.856 6.571h117.333v266.667c0 5.888 4.779 10.667 10.667 10.667h170.667c5.888 0 10.667-4.779 10.667-10.667V234.837h116.885c4.309 0 8.192-2.603 9.856-6.592 1.664-3.989.725-8.554-2.326-11.605z" />
-            </svg></button>
-        <button class="btn down" onclick="onMoveLineDown(event)"><svg xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 512.171 512.171">
-                <path
-                    d="M479.046 283.925c-1.664-3.989-5.547-6.592-9.856-6.592H352.305V10.667C352.305 4.779 347.526 0 341.638 0H170.971c-5.888 0-10.667 4.779-10.667 10.667v266.667H42.971a10.702 10.702 0 00-9.856 6.571c-1.643 3.989-.747 8.576 2.304 11.627l212.8 213.504c2.005 2.005 4.715 3.136 7.552 3.136s5.547-1.131 7.552-3.115l213.419-213.504a10.645 10.645 0 002.304-11.628z" />
-            </svg></button>
-        <button class="btn increase" value="+" onclick="onIncreaseFontSize(event)">A+</button>
-        <button class="btn decrease" value="-" onclick="onDecreaseFontSize(event)">A-</button>
-    </form>
+        <nav class="nav-container flex space-between">
+            <div class="logo">MEME-GEN</div>
+            <ul class="main-nav clean-list flex">
+                <li><a href=""> Gallery</a></li>
+                <li><a href="">About</a></li>
+            </ul>
+        </nav>
 
-    <div class="canvas-container">
-        <canvas id="my-canvas" height="500" width="500" onclick="place(event)"></canvas>
+    </header>
+
+    <div class="meme-editor">
+        <main class="editor-container flex space-between">
+            <div class="canvas-container">
+                <canvas id="my-canvas" height="500" width="500" onclick="place(event)"></canvas>
+            </div>
+            <form class="tools-container flex column">
+                <input type="text" placeholder="Text line" id="0" onfocus="onLineFocus(this.id)"
+                    oninput="onTextChange(this)">
+                <div class="btn-container1 flex">
+                    <button class="btn up" onclick="onMoveLineUp(event)"><svg xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 512.171 512.171">
+                            <path
+                                d="M476.723 216.64L263.305 3.115A10.652 10.652 0 00255.753 0a10.675 10.675 0 00-7.552 3.136L35.422 216.64c-3.051 3.051-3.947 7.637-2.304 11.627a10.67 10.67 0 009.856 6.571h117.333v266.667c0 5.888 4.779 10.667 10.667 10.667h170.667c5.888 0 10.667-4.779 10.667-10.667V234.837h116.885c4.309 0 8.192-2.603 9.856-6.592 1.664-3.989.725-8.554-2.326-11.605z" />
+                        </svg></button>
+                    <button class="btn down" onclick="onMoveLineDown(event)"><svg xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 512.171 512.171">
+                            <path
+                                d="M479.046 283.925c-1.664-3.989-5.547-6.592-9.856-6.592H352.305V10.667C352.305 4.779 347.526 0 341.638 0H170.971c-5.888 0-10.667 4.779-10.667 10.667v266.667H42.971a10.702 10.702 0 00-9.856 6.571c-1.643 3.989-.747 8.576 2.304 11.627l212.8 213.504c2.005 2.005 4.715 3.136 7.552 3.136s5.547-1.131 7.552-3.115l213.419-213.504a10.645 10.645 0 002.304-11.628z" />
+                        </svg></button>
+                    <button class="btn add" onclick="onAddTextLine(event)"><img src="img/symbols/add.png"
+                            alt=""></button>
+                            <button class="btn delete"><img src="img/symbols/delete.png" alt=""></button>
+                </div>
+                <div class="btn-container2">
+                    <button class="btn increase" value="+" onclick="onIncreaseFontSize(event)">A+</button>
+                    <button class="btn decrease" value="-" onclick="onDecreaseFontSize(event)">A-</button>
+                </div>
+            </form>
+        </main>
     </div>
 
-    <main>
-        <img id="1" src="img/1.jpg" alt="" onclick="onImgClicked(this)">
-        <img id="2" src="img/2.jpg" alt="" onclick="onImgClicked(this)">
-    </main>
+
+    <div class="home-page">
+
+        <main class="main-content flex center">
+            <!-- <input type="text" placeholder="search"> -->
+            <section class="img-gallery grid"></section>
+        </main>
+    </div>
 
 </body>
 <script src="js/meme-service.js"></script>
