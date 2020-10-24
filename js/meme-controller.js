@@ -11,6 +11,15 @@ function onInit() {
     renderImgs();
 }
 
+function onSetStrokeColor(color) {
+    setStrokeColor(color);
+}
+
+function onSetAlign(ev, val) {
+ev.preventDefault();
+setAlign(val);
+}
+
 function onAddTextLine(ev) {
     ev.preventDefault();
     // addLine();
@@ -48,12 +57,12 @@ function onImgClicked(elImg) {
 }
 
 function drawText(line) {
-    gCtx.strokeStyle = 'black';
+    gCtx.strokeStyle = line.stroke;
     gCtx.fillStyle = 'white';
     const text = line.txt;
     gCtx.lineWidth = '2';
     gCtx.font = `${line.size}px Impact`;
-    gCtx.textAlign = 'center';
+    gCtx.textAlign = line.align;
     gCtx.fillText(text, line.x, line.y);
     gCtx.strokeText(text, line.x, line.y);
 }

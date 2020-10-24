@@ -9,6 +9,10 @@
     src: url(../fonts/Poppins-Medium.ttf);
 }
 
+@font-face {
+    font-family: semi-bold;
+    src: url(../fonts/Poppins-SemiBold.ttf);
+}
 /* BASIC */
 
 body {
@@ -137,6 +141,8 @@ canvas {
     border: none;
     border-radius: 10px;
     background-color: #ebeef3;
+    font-family: semi-bold;
+    font-size: 2rem;
 }
 
 .btn-container1 {
@@ -167,6 +173,50 @@ background-image: linear-gradient(-38deg, #cf1d37 0%, #cf1d37 1%, #f05036 100%);
     ;
     padding: 01.5625rem 1rem 1.25rem;
     border-radius: 15px;
+    display: grid;
+    grid-template-columns: repeat(5 fr);
+    grid-template-rows: repeat(2 fr);
+    grid-row-gap: 1.75rem;
+    grid-column-gap: 2.125rem;
+}
+
+.increase{
+    grid-row: 1;
+    grid-column: 1;
+}
+
+.decrease {
+    grid-row: 1;
+    grid-column: 2;
+}
+
+.align-start {
+    grid-row: 1;
+    grid-column: 3;
+}
+
+.align-center {
+    grid-row: 1;
+    grid-column: 4;
+}
+
+.align-end {
+    grid-row: 1;
+    grid-column: 5;
+}
+
+.meme-editor .btn-container2 .stroke-color {
+    width: 55px;
+    height: 55px;
+    border: none;
+    border-radius: 10px;
+    background-color: #ebeef3;
+    font-family: semi-bold;
+    font-size: 2rem;
+    margin: 0;
+    padding: 0;
+    grid-row: 2;
+    grid-column: 3;
 }
 
 svg {

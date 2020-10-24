@@ -28,7 +28,7 @@
                 <canvas id="my-canvas" height="500" width="500" onclick="place(event)"></canvas>
             </div>
             <form class="tools-container flex column">
-                <input type="text" placeholder="Text line" id="0" onfocus="onLineFocus(this.id)"
+                <input class="text-line" type="text" name="text-line" placeholder="Text line" id="0" onfocus="onLineFocus(this.id)"
                     oninput="onTextChange(this)">
                 <div class="btn-container1 flex">
                     <button class="btn up" onclick="onMoveLineUp(event)"><svg xmlns="http://www.w3.org/2000/svg"
@@ -48,6 +48,10 @@
                 <div class="btn-container2">
                     <button class="btn increase" value="+" onclick="onIncreaseFontSize(event)">A+</button>
                     <button class="btn decrease" value="-" onclick="onDecreaseFontSize(event)">A-</button>
+                    <button class="btn align-start" value="start" onclick="onSetAlign(event, value)"><img src="img/symbols/align-start.png" alt=""></button>
+                    <button class="btn align-center" value="center" onclick="onSetAlign(event, value)"><img src="img/symbols/align-center.png" alt=""></button>
+                    <button class="btn align-end" value="end" onclick="onSetAlign(event, value)"><img src="img/symbols/align-end.png" alt=""></button>
+                    <input class="stroke-color" type="color" name="stroke-color" onchange="onSetStrokeColor(this.value)">
                 </div>
             </form>
         </main>

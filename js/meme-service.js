@@ -10,15 +10,49 @@ var gMeme = {
             txt: '',
             size: 48,
             x: 250,
-            y: 65
+            y: 65,
+            align: 'center',
+            stroke: 'ffffff'
         },
         {
             txt: '',
             size: 48,
             x: 250,
-            y: 435
+            y: 435,
+            align: 'center',
+            stroke: 'ffffff'
         }
     ]
+}
+
+function setStrokeColor(color) {
+    const selectedLine = getSelectedLine();
+    console.log(selectedLine);
+    selectedLine.stroke = color;
+    if (selectedLine.txt) drawImg();
+}
+
+function setAlign(val) {
+    const selectedLine = getSelectedLine();
+    selectedLine.align = val;
+    switch (val) {
+        case 'start':
+            selectedLine.x = 50;
+            break;
+        case 'center':
+            selectedLine.x = 250;
+            break;
+        case 'end':
+            selectedLine.x = 450;
+            break;
+    }
+    if (selectedLine.txt) drawImg();
+}
+
+function getSelectedLine() {
+    const selectedLineIdx = gMeme.selectedLineIdx;
+    const selectedLine = gMeme.lines[selectedLineIdx];
+    return selectedLine;
 }
 
 function setSelectedLine(id) {
@@ -31,21 +65,21 @@ function getLines() {
 }
 
 function resetLines() {
-    gMeme.lines[0] = { txt: '', size: 48, x: 250, y: 65 };
-    gMeme.lines[1] = { txt: '', size: 48, x: 250, y: 435 };
+    gMeme.lines[0] = { txt: '', size: 48, x: 250, y: 65, align: 'center', stroke: 'black' };
+    gMeme.lines[1] = { txt: '', size: 48, x: 250, y: 435, align: 'center', stroke: 'black' };
 }
 
 function setFontSize(value) {
-    const selectedLine = gMeme.selectedLineIdx;
-    if (value === '+') gMeme.lines[selectedLine].size++;
-    else gMeme.lines[selectedLine].size--;
+    const selectedLine = getSelectedLine();
+    if (value === '+') selectedLine.size++;
+    else selectedLine.size--;
     drawImg();
 }
 
 function setLinePosition(value) {
-    const selectedLine = gMeme.selectedLineIdx;
-    if (value === '+') gMeme.lines[selectedLine].y--;
-    else gMeme.lines[selectedLine].y++;
+    const selectedLine = getSelectedLine();
+    if (value === '+') selectedLine.y--;
+    else selectedLine.y++;
     drawImg();
 }
 
