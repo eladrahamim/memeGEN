@@ -3,12 +3,37 @@
 var gCanvas;
 var gCtx;
 var gImgId = 1;
-var gLineId = 1;
 
 function onInit() {
     gCanvas = document.querySelector('#my-canvas');
     gCtx = gCanvas.getContext('2d');
-    renderImgs();
+    renderGallery();
+}
+
+function onToggleMenu() {
+    document.body.classList.toggle('menu-open');
+}
+
+function onSwitchLines(ev) {
+    ev.preventDefault();
+    const txt = switchLines();
+    document.querySelector('.text-line').value = txt;
+}
+
+function onSetFont(val) {
+    setFont(val);
+    drawImg();
+}
+
+function onDeleteLine(ev) {
+    ev.preventDefault();
+    deleteLine();
+    document.querySelector('.text-line').value = '';
+    drawImg();
+}
+
+function onSetFillColor(color) {
+    setFillColor(color);
 }
 
 function onSetStrokeColor(color) {
@@ -16,16 +41,15 @@ function onSetStrokeColor(color) {
 }
 
 function onSetAlign(ev, val) {
-ev.preventDefault();
-setAlign(val);
+    ev.preventDefault();
+    setAlign(val);
 }
 
 function onAddTextLine(ev) {
     ev.preventDefault();
-    // addLine();
-    var elForm = document.querySelector('form')
-    elForm.innerHTML += `<input type="text" placeholder="Text line" id="${gLineId}" onfocus="onLineFocus(this.id)" oninput="onTextChange(this)">`;
-    gLineId++;
+    addLine();
+    document.querySelector('.text-line').value = '';
+    drawImg();
 }
 
 function onDecreaseFontSize(ev) {
@@ -50,18 +74,18 @@ function onMoveLineUp(ev) {
 
 function onImgClicked(elImg) {
     document.querySelector('.meme-editor').style.display = 'block';
-    document.querySelector('.img-gallery').style.display = 'none';
+    document.querySelector('.main-content').style.display = 'none';
     setImg(elImg);
     resetLines();
     drawImg();
 }
 
-function drawText(line) {
+function drawLine(line) {
     gCtx.strokeStyle = line.stroke;
-    gCtx.fillStyle = 'white';
+    gCtx.fillStyle = line.fill;
     const text = line.txt;
     gCtx.lineWidth = '2';
-    gCtx.font = `${line.size}px Impact`;
+    gCtx.font = `${line.size}px ${line.font}`;
     gCtx.textAlign = line.align;
     gCtx.fillText(text, line.x, line.y);
     gCtx.strokeText(text, line.x, line.y);
@@ -71,8 +95,9 @@ function onLineFocus(id) {
     setSelectedLine(id);
 }
 
-function onTextChange(elInput) {
-    setLine(elInput.value, elInput.id);
+function onTextChange(txt) {
+    setTxt(txt);
+    drawImg();
 }
 
 function drawImg() {
@@ -81,11 +106,11 @@ function drawImg() {
     img.onload = () => {
         gCtx.drawImage(img, 0, 0, gCanvas.width, gCanvas.height)
         const lines = getLines();
-        lines.forEach(line => drawText(line));
+        lines.forEach(line => drawLine(line));
     }
 }
 
-function renderImgs() {
+function renderGallery() {
     var imgs = getImgs()
     var strHtmls = imgs.map(function (img) {
         return `
